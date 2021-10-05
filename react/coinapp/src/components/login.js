@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import { Form, Button} from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/user";
 import axios from 'axios';
 
 function Login(props){
@@ -21,6 +23,13 @@ function Login(props){
             sessionStorage.setItem('loggedIn', true)
             props.login("admin")
             history.push('/')
+            dispatch(
+                login({
+                    username: "admin",
+                    password: "admin123",
+                    loggedIn: true
+                })
+            )
         })
         .catch(err =>{
             console.log(err)
@@ -28,6 +37,10 @@ function Login(props){
         })
         
     }
+
+    const dispatch = useDispatch()
+
+    
 
     return(
         <Form onSubmit={handleSubmit(onSubmit)}>

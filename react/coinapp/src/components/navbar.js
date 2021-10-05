@@ -1,54 +1,57 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav} from 'react-bootstrap';
+import { Navbar, Nav, Button} from 'react-bootstrap';
+
+import { useSelector } from "react-redux"
+import { selectUser } from "../redux/user";
+import { useDispatch } from "react-redux";
+import { logout} from "../redux/user";
+
 import {
     BrowserRouter as Router,
-    Switch,
-    Route,
     Link
   } from "react-router-dom";
 
-const navbar = () =>{
 
-    const postCoin = () =>{
-        if(sessionStorage.getItem("loggedIn") == true){
-            return(
-                <Nav>
-                    <Link to ="/postCoin">Post Coin</Link>
-                </Nav>
-                
-            )
-        }else{
-            return null
-        }
+const Navibar = () =>{
+    const user = useSelector(selectUser)
+
+    const dispatch = useDispatch()
+
+    const handleLogout = () => {
+        dispatch(logout())
     }
 
-    const login = () =>{
-        if(sessionStorage.getItem("loggedIn") == true){
-            return(
-                <Nav>
-                    <Link to ="/login">Login</Link>
-                </Nav>
-            )
-        }else{
-            return null
-        }
-    }
+    const postCoin = (
+        <Nav>
+            <Link to ="/postCoin">Post Coin</Link>
+        </Nav>
+    )
 
+    const loginUser = (
+    <Nav className="mr-auto">
+        <Link to ="/Login">Login</Link>
+    </Nav>)
+
+    const logoutUser = (<Nav className="mr-auto">
+        <Link to="/" onClick = {handleLogout}>Logout</Link>
+    </Nav>)
+
+    
     return(
-
-            <Navbar bg="dark" variant="dark">
+        <Navbar bg="dark" variant="dark">
             <Navbar.Brand href="#home">
                 <Link to = "/">ANCIENT COINS OF GREECE</Link>
             </Navbar.Brand>
-            <Nav className="mr-auto">
-                <Link to ="/about">About</Link>
-            </Nav>
-            {login()}
-            {postCoin()}
-            </Navbar>
+        <Nav className="mr-auto">
+            <Link to ="/about">About</Link>
+        </Nav>
+        
+        { user ? logoutUser: loginUser}
+        { user ? postCoin: null}
+        </Navbar>
 
     )
 }
 
-export default navbar;
+export default Navibar;

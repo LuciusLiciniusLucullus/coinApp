@@ -13,17 +13,17 @@ function PostCoin(){
             <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group className="mb-3">
                 <Form.Label>City Name</Form.Label>
-                <Form.Control type="text" placeholder="City Name" />
+                <Form.Control {...register('cityName')} type="text" placeholder="City Name" />
             </Form.Group>
 
             <Form.Group className="mb-3">
                 <Form.Label>Coin Name</Form.Label>
-                <Form.Control type="text" placeholder="Coin Name" />
+                <Form.Control {...register('coinName')} type="text" placeholder="Coin Name" />
             </Form.Group>
 
             <Form.Group className="mb-3">
                 <Form.Label>City Description</Form.Label>
-                <Form.Control {...register('cityDesc')}type="text" placeholder="Description of the city.." />
+                <Form.Control {...register('cityDesc')} type="text" placeholder="Description of the city.." />
             </Form.Group>
 
             <input {...register('picture')} type="file" name="picture"/>
