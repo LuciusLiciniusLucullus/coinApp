@@ -37,6 +37,10 @@ const Navibar = () =>{
         <Link to="/" onClick = {handleLogout}>Logout</Link>
     </Nav>)
 
+    const postManClone = (
+    <Nav className="mr-auto">
+        <Link to ="/postMan">postMan CLONE</Link>
+    </Nav>)
     
     return(
         <Navbar bg="dark" variant="dark">
@@ -49,6 +53,7 @@ const Navibar = () =>{
         
         { user ? logoutUser: loginUser}
         { user ? postCoin: null}
+        {user ? postManClone: null}
         </Navbar>
 
     )

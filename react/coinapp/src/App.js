@@ -9,6 +9,7 @@ import NVBar from './components/navbar.js';
 import Home from './components/home.js';
 import Login from './components/login.js';
 import PostCoin from './components/postCoin.js';
+import PostMan from './components/postMan.js';
 import {
     BrowserRouter as Router,
     Switch,
@@ -39,6 +40,9 @@ function App(){
                 </Route>
                 <Route path="/postCoin">
                     <PostCoin/>
+                </Route>
+                <Route path="/postMan">
+                    <PostMan/>
                 </Route>
             </Switch>
             
